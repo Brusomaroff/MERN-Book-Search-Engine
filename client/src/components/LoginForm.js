@@ -1,4 +1,4 @@
-// ModifiedLoginForm.js
+// see SignupForm.js for comments
 import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
@@ -6,7 +6,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const ModifiedLoginForm = () => {
+const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -28,7 +28,7 @@ const ModifiedLoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // Check if the form is valid
+    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -46,7 +46,7 @@ const ModifiedLoginForm = () => {
       console.error(e);
     }
 
-    // Clear form values
+    // clear form values
     setUserFormData({
       email: "",
       password: "",
@@ -62,7 +62,7 @@ const ModifiedLoginForm = () => {
           show={showAlert}
           variant="danger"
         >
-          There was an issue with your login credentials.
+          Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
@@ -98,11 +98,11 @@ const ModifiedLoginForm = () => {
           type="submit"
           variant="success"
         >
-          Log In
+          Submit
         </Button>
       </Form>
     </>
   );
 };
 
-export default ModifiedLoginForm;
+export default LoginForm;
